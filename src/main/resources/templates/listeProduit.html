@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org/"
+xmnls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des produits</title>
+</head>
+<body>
+
+    <div th:replace="template"></div>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                Liste des produits
+            </div>
+            <div class="card-body">
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="produit : ${produits.content}">
+                            <td th:text="${produit.idProduit}"></td>
+                            <td th:text="${produit.nomProduit}"></td>
+                            <td th:text="${produit.prixProduit}"></td>
+                            <td ><a class="btn btn-danger"  th:href="@{deleteProduit(id = ${produit.idProduit}, page = ${currentPage} )}">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+                <ul class="nav nav-pills">
+                    <li th:each="page, status:${pages}">
+                        <a th:class="${status.index==currentPage?'btn btn-primary':'btn'}"
+                        th:href="@{ listeProduit(page=${status.index}, size=${size} ) }"
+                        th:text = "${status.index}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
