@@ -77,7 +77,7 @@ class ProduitApplicationTests {
 //	}
 
 	@Test
-	public void testFindByName()
+	void testFindByName()
 	{
 		List<Produit> p = produitRepository.findByNomProduit("Ordinateur hp");
 
@@ -85,7 +85,7 @@ class ProduitApplicationTests {
 	}
 
 	@Test
-	public void testFindByNameContains()
+	void testFindByNameContains()
 	{
 		List<Produit> p = produitRepository.findByNomProduitContains("Ordinateur");
 
@@ -93,7 +93,7 @@ class ProduitApplicationTests {
 	}
 
 	@Test
-	public void testJavaQueryMaethod()
+	void testJavaQueryMaethod()
 	{
 		List<Produit> ps = produitRepository.findByPrixProduit("Ordinateur hp", 200.0);
 		System.out.println(ps);
@@ -103,9 +103,14 @@ class ProduitApplicationTests {
 	void testFindByCategorie()
 	{
 
-		Categorie c = rep.findById(1L).get();
-		// List<Produit> p = produitRepository.findByCategorie(c);
+		Categorie c = new Categorie();
+		c.setIdCat(1L);
 
-		System.out.println(c);
+		List<Produit> prods = produitRepository.findByCategorie(c);
+
+		for(Produit p : prods)
+		{
+			System.out.println(p);
+		}
 	}
 }
