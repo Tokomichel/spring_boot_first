@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.util.ClassUtils.isPresent;
 
@@ -31,10 +32,9 @@ public class ProduitService implements ProduitFactory{
     @Override
     public Produit getProduit(Long id) {
 
-        if (produitRepository.existsById(id)) {
-            return produitRepository.findById(id).get();
-        }
-        return null;
+        Optional<Produit> produit = produitRepository.findById(id);
+
+        return produit.orElse(null);
     }
 
     @Override
