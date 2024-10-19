@@ -2,6 +2,8 @@ package com.produit.models;
 
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
@@ -9,14 +11,22 @@ import java.util.Date;
 @Entity
 public class Produit {
 
+    @Getter
     @Id
 
     private Long idProduit;
+    @Setter
+    @Getter
     private String nomProduit;
+    @Setter
+    @Getter
     private double prixProduit;
+    @Setter
+    @Getter
     private Date dateCreation;
 
     @ManyToOne
+    @Getter
     private Categorie categorie;
 
     //Constructors
@@ -28,41 +38,6 @@ public class Produit {
 
         this.nomProduit = nomProduit;
         this.prixProduit = prixProduit;
-        this.dateCreation = dateCreation;
-    }
-
-
-    //Getters
-
-
-    public Long getIdProduit() {
-        return idProduit;
-    }
-
-    public String getNomProduit() {
-        return nomProduit;
-    }
-
-    public double getPrixProduit() {
-        return prixProduit;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    // Setters
-    // There is no setter for idProduit
-
-    public void setNomProduit(String nomProduit) {
-        this.nomProduit = nomProduit;
-    }
-
-    public void setPrixProduit(double prixProduit) {
-        this.prixProduit = prixProduit;
-    }
-
-    public void setDateCreation(Date dateCreation) {
         this.dateCreation = dateCreation;
     }
 

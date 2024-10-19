@@ -4,6 +4,7 @@ import com.produit.models.Categorie;
 import com.produit.models.Produit;
 import com.produit.repository.ProduitRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 public class ProduitService implements ProduitFactory{
 
+    @Autowired // I'll try the sonar lint injection method proposition
     ProduitRepository produitRepository;
 
     @Override

@@ -1,5 +1,6 @@
 package com.produit.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Categorie {
     private String descriptionCat;
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Produit> produits;
 
 }
