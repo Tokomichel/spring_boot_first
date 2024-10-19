@@ -19,6 +19,8 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
     List<Produit> findByPrixProduit (@Param("nom") String nomProduit, @Param("prix") double prixProduit);
 
     @Query("select p  from Produit p where p.categorie = :cat")
-    public List<Produit> findByCategorie(@Param("cat") Categorie cat);
+    List<Produit> findByCategorie(@Param("cat") Categorie cat);
+
+    List<Produit> findByCategorieIdCategorie(long idCategorie);
 
 }
