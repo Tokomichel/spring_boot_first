@@ -82,5 +82,8 @@ public class ProduitService implements ProduitFactory{
     @Override
     public List<Produit> findByCategorieIdCategorie(long idCategorie) {
         return produitRepository.findByCategorieIdCat(idCategorie);
+
     }
+
+
 }

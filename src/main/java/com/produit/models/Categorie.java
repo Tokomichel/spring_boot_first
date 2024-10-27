@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.beans.ConstructorProperties;
 import java.util.List;
 
 @Data
@@ -23,5 +24,10 @@ public class Categorie {
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Produit> produits;
+
+    public Categorie(String nomCat, String descriptionCat) {
+        this.nomCat = nomCat;
+        this.descriptionCat = descriptionCat;
+    }
 
 }

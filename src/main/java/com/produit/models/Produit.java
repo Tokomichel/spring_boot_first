@@ -2,31 +2,38 @@ package com.produit.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 
+@Getter
 @Entity
 public class Produit {
 
-    @Getter
     @Id
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idProduit;
     @Setter
-    @Getter
+    @NotNull
     private String nomProduit;
+
     @Setter
-    @Getter
+    @Min(1)
+    @Max(1000)
     private double prixProduit;
+
     @Setter
-    @Getter
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateCreation;
 
     @ManyToOne
-    @Getter
     private Categorie categorie;
 
     //Constructors
