@@ -3,16 +3,16 @@ package com.produit.controllers;
 
 import com.produit.models.Produit;
 import com.produit.services.ProduitService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 
 @Controller
@@ -20,6 +20,13 @@ public class ProduitController {
 
     @Autowired
     ProduitService produitService;
+
+    @RequestMapping(path = "/showCreate")
+    public String showCreate(ModelMap modelMap) {
+
+        modelMap.addAttribute("produit", new Produit());
+        return "/createProduit";
+    }
 
     @GetMapping(path = "/first")
     public String viewHandler() {
@@ -59,7 +66,10 @@ public class ProduitController {
     }
 
     @RequestMapping(path = "/saveProduit")
-    public String saveProduit(@ModelAttribute Produit produit) {
+    public String saveProduit(@Valid Produit produit, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) return "createProduit";
+
         try {
             produitService.saveProduit(produit);
         }
