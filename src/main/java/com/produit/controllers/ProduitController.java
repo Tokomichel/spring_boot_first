@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 
 @Controller
 public class ProduitController {
@@ -26,13 +28,13 @@ public class ProduitController {
 
     @RequestMapping(path = "/listeProduit")
     public String listeProduit(ModelMap modelMap,
-                               @RequestParam (name = "page", defaultValue = "3") int page,
+                               @RequestParam (name = "page", defaultValue = "0") int page,
                                @RequestParam (name = "size", defaultValue = "4") int size
     ) {
 //        List<Produit> produits = produitService.getProduits();
 //        System.out.println(produits.getFirst());
-//        modelMap.addAttribute("produits", produits);
-//        return "listeProduit";
+//        modelMap.addAttribute("produits", produits) ;
+//        return "listeProduit" ;
 
 
 
@@ -58,7 +60,14 @@ public class ProduitController {
 
     @RequestMapping(path = "/saveProduit")
     public String saveProduit(@ModelAttribute Produit produit) {
-        produitService.saveProduit(produit);
+        try {
+            produitService.saveProduit(produit);
+        }
+        catch (Exception e) {
+            //e.printStackTrace();
+            return "createProduit";
+        }
+
         return "createProduit";
     }
 

@@ -20,12 +20,10 @@ public class Produit {
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idProduit;
     @Setter
-    @NotNull
     private String nomProduit;
 
     @Setter
-    @Min(1)
-    @Max(1000)
+
     private double prixProduit;
 
     @Setter
