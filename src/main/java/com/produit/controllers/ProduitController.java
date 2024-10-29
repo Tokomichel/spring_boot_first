@@ -68,17 +68,14 @@ public class ProduitController {
     @RequestMapping(path = "/saveProduit")
     public String saveProduit(@Valid Produit produit, BindingResult bindingResult) {
 
-        if (bindingResult.hasErrors()) return "createProduit";
+        String template = "createProduit";
 
-        try {
-            produitService.saveProduit(produit);
-        }
-        catch (Exception e) {
-            //e.printStackTrace();
-            return "createProduit";
-        }
+        if (bindingResult.hasErrors()) return template;
 
-        return "createProduit";
+        produitService.saveProduit(produit);
+        // we don't needs try catch anymore
+
+        return template;
     }
 
 
