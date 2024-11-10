@@ -23,6 +23,8 @@ xmnls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                             <th>ID</th>
                             <th>Nom</th>
                             <th>Prix</th>
+                            <th>Supprimer</th>
+                            <th>Editer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +33,7 @@ xmnls:layout="http://www.ultraq.net.nz/thymeleaf/layout">
                             <td th:text="${produit.nomProduit}"></td>
                             <td th:text="${produit.prixProduit}"></td>
                             <td ><a class="btn btn-danger"  th:href="@{deleteProduit(id = ${produit.idProduit}, page = ${currentPage} )}">Delete</a></td>
-                            <td><a class="btn btn-success" th:href="@{modifierProduit(id=${p.idProduit})}">Editer</a></td>
+                            <td><a class="btn btn-success" th:href="@{modifierProduit(id = ${produit.idProduit})}">Editer</a></td>
                         </tr>
                     </tbody>
                 </table>
